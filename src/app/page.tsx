@@ -1,6 +1,7 @@
 
 "use client"
 import Banner from "@/components/banner/Banner";
+import Footer from "@/components/footer/Footer";
 import HeroComponent from "@/components/Hero/HeroComponent";
 import Navbar from "@/components/navbar/Navbar";
 import Product from "@/components/products/Product";
@@ -28,6 +29,7 @@ export default function Home() {
       <TopProduct/>
       <Banner/>
       <Subscribe/>
+      <Footer/>
     </div>
   )
 }
