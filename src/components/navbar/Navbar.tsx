@@ -6,9 +6,11 @@ import { IoMdSearch } from "react-icons/io";
 import { FaCaretDown, FaCartShopping, FaBars } from "react-icons/fa6";
 import { MdClose } from "react-icons/md";
 import DarkMode from "./darkMode/DarkMode";
+import { useGetBrandListQuery } from "@/redux/ApiSlice";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const {data:navMenuData, isLoading,isFetching,isSuccess}=useGetBrandListQuery()
 
   const Menu = [
     { id: 1, name: "Home", link: "/#" },
@@ -60,15 +62,16 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-
-      {/* Menu for Large Screens */}
-      <div data-aos="zoom-out" className={`flex justify-center dark:bg-gray-900`}>
+      <div
+        data-aos="zoom-out"
+        className={`flex justify-center dark:bg-gray-900`}
+      >
         <ul className="sm:flex hidden items-center gap-4 dark:text-white">
-          {Menu.map((item) => (
+          {isSuccess ? navMenuData?.data?.map((item) => (
             <li key={item.id} className="px-3 py-2 hover:text-yellow-600">
-              <Link href={item.link}>{item.name}</Link>
+              <Link href="#">{item.brandName}</Link>
             </li>
-          ))}
+          )):""}
           <li className="group relative cursor-pointer">
             <Link href="#" className="flex items-center gap-[2px]">
               Trending Products
